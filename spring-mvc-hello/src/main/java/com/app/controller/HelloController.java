@@ -1,11 +1,11 @@
 package com.app.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,8 +21,20 @@ public class HelloController {
 	}
 
 	@PostMapping("/login")
-	public String userLogin(HttpServletRequest request) {
-		System.out.println(request.getParameter("username") + "\t" + request.getParameter("password"));
+	public String userLogin(@ModelAttribute User user) {
+		System.out.println(user.getUserName());
+		System.out.println(user.getPassword());
 		return "redirect:/index";
 	}
+
+	@ModelAttribute("names")
+	public List<String> getNames() {
+		List<String> list = new ArrayList<String>();
+		list.add("Rahul");
+		list.add("Mukesh");
+		list.add("Rakesh");
+
+		return list;
+	}
+
 }
