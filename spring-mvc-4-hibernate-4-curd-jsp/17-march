@@ -1,0 +1,40 @@
+one-many
+
+<form:form modelAttribute="student">
+	
+	
+
+</>
+
+enter name : 
+
+address 1 :
+addres  2 :
+
+student.setAddresses(alist)
+
+DTO : data transfer object
+-----------------------------
+
+Project :
+	-Home |  Product | Bill Generation
+	
+-Home 
+	-List Products
+	-add to cart
+	
+-Product
+	-add Product
+	-add color
+	-add size
+	-add branch
+	
+-bill generation
+	-view all cart product
+	- Final bill 
+ 
+
+
+
+
+

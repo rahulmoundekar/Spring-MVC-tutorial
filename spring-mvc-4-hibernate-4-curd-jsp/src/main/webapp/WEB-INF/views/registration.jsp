@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <title>Employee CURD</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +16,8 @@
 <body>
 
 	<div class="container">
-		<form:form modelAttribute="employeeForm" class="form-horizontal" action="save" method="post">
+		<form:form modelAttribute="employeeForm" class="form-horizontal"
+			action="save" method="post">
 			<fieldset>
 				<c:if test="${not empty success}">
 					<font color="green">${success}</font>
@@ -24,7 +25,7 @@
 				<c:if test="${not empty error}">
 					<font color="red">${error}</font>
 				</c:if>
-				
+
 				<!-- Form Name -->
 				<legend>Form Name</legend>
 
@@ -32,24 +33,41 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="name">Enter Name</label>
 					<div class="col-md-4">
-						<form:input path="name" id="name" name="name" type="text" placeholder="Enter Name"
-							class="form-control input-md" required=""></form:input>
-
-					</div>
-				</div>
-
-				<!-- Text input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="address">Enter
-						Address</label>
-					<div class="col-md-4">
-						<form:input path="address" id="address" name="address" type="text"
-							placeholder="Enter Address" class="form-control input-md"
+						<form:input path="name" id="name" type="text"
+							placeholder="Enter Name" class="form-control input-md"
 							required=""></form:input>
+						<form:errors path="name" cssStyle="color:red" />
 
 					</div>
 				</div>
 
+				<c:forEach items="${employeeForm.addresses}" var="addr"
+					varStatus="row">
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="city">Enter
+							City Name</label>
+						<div class="col-md-4">
+							<form:input path="addresses[${row.index}].city" id="city"
+								type="text" placeholder="Enter city"
+								class="form-control input-md" required=""></form:input>
+
+						</div>
+					</div>
+
+					<!-- Text input-->
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="pincode">Enter
+							Pincode</label>
+						<div class="col-md-4">
+							<form:input path="addresses[${row.index}].pincode" id="pincode"
+								type="text" placeholder="Enter Pincode"
+								class="form-control input-md" required=""></form:input>
+
+						</div>
+					</div>
+					<hr />
+				</c:forEach>
 				<!-- Button -->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for=""></label>
@@ -77,7 +95,8 @@
 						<td>${employee.id}</td>
 						<td>${employee.name}</td>
 						<td>${employee.address}</td>
-						<td><a href="modify?id=${employee.id}">Edit</a>|<a href="delete?id=${employee.id}">Delete</a></td>
+						<td><a href="modify?id=${employee.id}">Edit</a>|<a
+							href="delete?id=${employee.id}">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
